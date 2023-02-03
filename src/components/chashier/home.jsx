@@ -1,8 +1,9 @@
 import React from "react";
-const CashHome = () => {
+const CashHome = ({ currentUser }) => {
   return (
     <div className="bg-gray-100 font-sans leading-normal tracking-normal">
-      <div className="flex md:flex-row-reverse flex-wrap">
+      <h1>{currentUser.userName}</h1>
+      {/* <div className="flex md:flex-row-reverse flex-wrap">
         <div className="w-full md:w-4/5 bg-gray-100">
           <div className="container bg-gray-100 pt-16 px-6"></div>
         </div>
@@ -57,7 +58,7 @@ const CashHome = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

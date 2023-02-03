@@ -1,6 +1,6 @@
 import React from "react";
-const ChefHome = () => {
-  return <div>this is chef home</div>;
+const ChefHome = ({ currentUser }) => {
+  return <div>this is {currentUser.userName} home</div>;
 };
 
 export default ChefHome;

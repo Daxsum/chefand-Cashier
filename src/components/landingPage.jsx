@@ -1,8 +1,10 @@
 import React from "react";
 import cashier from "../assets/cashier.svg";
 import chef from "../assets/chef.svg";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-grey-light font-sans leading-normal tracking-normal overflow-hidden">
       <nav
@@ -103,7 +105,10 @@ const LandingPage = () => {
           <p className="leading-normal mb-4">
             please contact your admin if you don't have an account!
           </p>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white rounded shadow hover:shadow-lg py-2 px-4 border hover:border-transparent">
+          <button
+            onClick={() => navigate("/loginCashier")}
+            className="bg-orange-500 hover:bg-orange-600 text-white rounded shadow hover:shadow-lg py-2 px-4 border hover:border-transparent"
+          >
             Sign in
           </button>
         </div>
@@ -122,7 +127,10 @@ const LandingPage = () => {
           <p className="leading-normal mb-4">
             please contact your admin if you don't have an account!
           </p>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white rounded shadow hover:shadow-lg py-2 px-4 border hover:border-transparent">
+          <button
+            onClick={() => navigate("/loginChef")}
+            className="bg-orange-500 hover:bg-orange-600 text-white rounded shadow hover:shadow-lg py-2 px-4 border hover:border-transparent"
+          >
             Sign in
           </button>
         </div>
