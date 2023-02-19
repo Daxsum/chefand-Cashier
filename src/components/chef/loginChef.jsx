@@ -13,7 +13,10 @@ const LoginChef = ({ setCurrentUser, currentUser }) => {
     e.preventDefault();
 
     await axios
-      .post("http://localhost:5000/api/login", { userName, password })
+      .post(`${import.meta.env.VITE_API}/api/login`, {
+        userName,
+        password,
+      })
       .then(function (response) {
         sessionStorage.setItem("token", response.data);
         const config = {
@@ -22,7 +25,7 @@ const LoginChef = ({ setCurrentUser, currentUser }) => {
           },
         };
         axios
-          .get("http://localhost:5000/api/users/me", config)
+          .get(`${import.meta.env.VITE_API}/api/users/me`, config)
           .then(function (response) {
             setCurrentUser(response.data);
             response.data.role === "chef"

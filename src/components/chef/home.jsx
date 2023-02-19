@@ -19,7 +19,7 @@ function ChefHome({ currentUser }) {
       },
     };
     axios
-      .get("http://localhost:5000/api/order/getAllActive", config)
+      .get(`${import.meta.env.VITE_API}/api/order/getAllActive`, config)
       .then(async (response) => {
         if (timeLeft === 0) {
           const config = {
@@ -32,7 +32,7 @@ function ChefHome({ currentUser }) {
           };
           await axios
             .put(
-              `http://localhost:5000/api/order/Update/${activeOrder._id}`,
+              `${import.meta.env.VITE_API}/api/order/Update/${activeOrder._id}`,
               body,
               config
             )
@@ -77,7 +77,7 @@ function ChefHome({ currentUser }) {
             <div className="max-w-sm rounded overflow-hidden shadow-lg w-80">
               <img
                 className="w-full"
-                src={`//localhost:5000/${activeOrder.item.filePath}`}
+                src={`${import.meta.env.VITE_API}/${activeOrder.item.filePath}`}
                 alt="foods pic"
               />
               <div className="px-6 py-4">
@@ -133,7 +133,7 @@ function ChefHome({ currentUser }) {
               <div className="max-w-sm rounded-xl overflow-hidden shadow-lg w-80">
                 <img
                   className="w-full"
-                  src={`//localhost:5000/${order.item.filePath}`}
+                  src={`${import.meta.env.VITE_API}/${order.item.filePath}`}
                   alt="foods pic"
                 />
                 <div className="px-6 py-4">
