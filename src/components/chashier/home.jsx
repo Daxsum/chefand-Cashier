@@ -1,64 +1,51 @@
-import React from "react";
+import React,{useEffect, useState}from "react";
+import axios from "axios";
+import Modal from "./modal";
 const CashHome = ({ currentUser }) => {
+const [orders,setOrders]=useState([])
+  useEffect(() => {
+    const config = {
+      headers: {
+        authorization: sessionStorage.getItem("token"),
+      },
+    };
+    axios.get(`${import.meta.env.VITE_API}/api/users/getAllUsers`, config)
+  .then(function (response) {
+    // handle success
+    setOrders(response.data)
+    
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+   
+  });
+  console.log(orders)
   return (
-    <div className="bg-gray-100 font-sans leading-normal tracking-normal">
-      <h1>{currentUser.userName}</h1>
-      {/* <div className="flex md:flex-row-reverse flex-wrap">
-        <div className="w-full md:w-4/5 bg-gray-100">
-          <div className="container bg-gray-100 pt-16 px-6"></div>
-        </div>
 
-        <div className="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-600">
-          <div className="md:relative mx-auto lg:float-right lg:px-6">
-            <ul className="list-reset flex flex-row md:flex-col text-center md:text-left">
-              <li className="mr-3 flex-1">
-                <a
-                  href="#"
-                  className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
-                >
-                  <i className="fas fa-link pr-0 md:pr-3"></i>
-                  <span className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">
-                    Link
-                  </span>
-                </a>
-              </li>
-              <li className="mr-3 flex-1">
-                <a
-                  href="#"
-                  className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
-                >
-                  <i className="fas fa-link pr-0 md:pr-3"></i>
-                  <span className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">
-                    Link
-                  </span>
-                </a>
-              </li>
-              <li className="mr-3 flex-1">
-                <a
-                  href="#"
-                  className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600"
-                >
-                  <i className="fas fa-link pr-0 md:pr-3 text-pink-500"></i>
-                  <span className="pb-1 md:pb-0 text-xs md:text-base text-white md:font-bold block md:inline-block">
-                    Active Link
-                  </span>
-                </a>
-              </li>
-              <li className="mr-3 flex-1">
-                <a
-                  href="#"
-                  className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
-                >
-                  <i className="fas fa-link pr-0 md:pr-3"></i>
-                  <span className="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">
-                    Link
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
+    <div className="bg-gray-100 font-sans  tracking-normal w-full h-screen">
+      <h1>{currentUser.userName}</h1>
+      <div className=" flex flex-wrap ">
+   { orders.map((o)=><div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 p-2">
+    <div className="rounded overflow-hidden shadow-lg">
+      <img className="w-full" src="https://www.peter-hall.co.uk/wp-content/uploads/2021/02/Oxford-Lamp-Table.jpeg" alt="River"/>
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{o.firstName+" "+ o.lastName}</div>
+        {/* <button className="bg-green-400 hover:bg-green-500 p-2 rounded text-white">Payment Detail</button> */}
+        <Modal/>
+      </div>
+      <div className="px-6 pt-4 pb-2">
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#custom tag</span>
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#custom tag</span>
+        
+      </div>
+    </div>
+   </div>
+    
+   
+     
+ ) }</div>
     </div>
   );
 };
